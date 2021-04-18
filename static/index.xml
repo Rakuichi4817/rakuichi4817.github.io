@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statics on RakuBlog</title>
+    <link>https://rakuichi4817.github.io/static/</link>
+    <description>Recent content in Statics on RakuBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>2019 - 2021 Rakuichi - All rights reserved</copyright><atom:link href="https://rakuichi4817.github.io/static/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://rakuichi4817.github.io/privacy-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/privacy-policy/</guid>
+      <description>当サイトに掲載されている広告について 当サイトでは、第三者配信の広告サービス（Googleアドセンス）を利用しています。 このような広告配信事業</description>
+    </item>
+    
+  </channel>
+</rss>

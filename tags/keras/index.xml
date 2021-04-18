@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Keras on RakuBlog</title>
+    <link>https://rakuichi4817.github.io/tags/keras/</link>
+    <description>Recent content in Keras on RakuBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>2019 - 2021 Rakuichi - All rights reserved</copyright>
+    <lastBuildDate>Mon, 13 Apr 2020 23:00:00 +0900</lastBuildDate><atom:link href="https://rakuichi4817.github.io/tags/keras/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</link>
+      <pubDate>Mon, 13 Apr 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</guid>
+      <description>こんばんは、4月から始まった会社の研修も、Zoomによるリモート研修になってしまい、一日中パソコンとにらめっこしているRakuichiです。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>HUGOのインストール方法（Windows） | RakuBlog</title>
+	
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary" />
+	
+	<meta name="og:title" content="HUGOのインストール方法（Windows）" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/raku.jpg" />
+	
+
+	
+	<meta name="og:description" content="今回からPCが苦手な方でもわかるようにできる限り丁寧に，逆に概念的なものは飛ばして，HUGOを利用して簡単にWebページを作成する方法について，説明しようと思います．" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2019/0121/hugo01/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=HUGO%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e6%96%b9%e6%b3%95%ef%bc%88Windows%ef%bc%89&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f0121%2fhugo01%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f0121%2fhugo01%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f0121%2fhugo01%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Jan 21, 2019
+                                <i class="far fa-clock clock"></i>
+                                3 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">HUGOのインストール方法（Windows）</h1>
+                </div>
+
+                
+                
+                
+                
+                <img class="featured-image img-fluid" src="https://rakuichi4817.github.io/images/cover/hugo.png" alt="thumbnail for this post">
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <p>今回からPCが苦手な方でもわかるようにできる限り丁寧に，逆に概念的なものは飛ばして，HUGOを利用して簡単にWebページを作成する方法について，説明しようと思います．</p>
+<p>HUGOとはGo言語で書かれた静的サイトジェネレータです．このサイトもHUGOを用いて作成していますが，私が使っていて感じるメリットは以下の点です．</p>
+<ul>
+<li>blog形式の静的サイトを簡単に高速に作成できる</li>
+<li>テーマが豊富で，適応も簡単なため，こだわりがなければすぐにサイトを作成できる</li>
+</ul>
+<p>以前までhtmlをゴリゴリ書いていた私にとっては画期的なサイトジェネレータでした笑．今回から少しずつ簡単なサイトを作成するところまで載せていくつもりです～．</p>
+<h2 id="chocolateyを用いたインストール">chocolateyを用いたインストール</h2>
+<p>chocolateyはLinuxでいう「apt」のようなパッケージ管理ツールです．（いろんなパッケージ（ソフト）をコマンドを打つことで入れることができます！）HUGOはchocolateyを用いて簡単に入れることができます．</p>
+<h3 id="chocolateyのインストール1月21日追記">chocolateyのインストール(1月21日追記)</h3>
+<p>まず管理者用コマンドプロンプトをひらく．</p>
+<ul>
+<li><code>Windowsキー(Windowsのマークが書かれたボタン)</code>と<code>r</code>の同時押し</li>
+<li>表示された入力欄※1に <code>cmd</code> を入力し <code>ctrl</code>  <code>shift</code>  <code>Enter</code> を同時押し</li>
+<li>「このアプリがデバイスに変更を加えることを許可しますか」というメッセージが出てくるが気にせずOKを押す</li>
+</ul>
+
+<link rel="stylesheet" href="https://rakuichi4817.github.io/css/hugo-easy-gallery.css" />
+<div class="box fancy-figure caption-position-bottom caption-effect-fade img-center" style="width:60%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="photos/prompt.png" alt="※1"/>
+    </div>
+      <figcaption>
+          <p>※1</p>
+      </figcaption>
+    <a href="photos/prompt.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+<p><strong>以下取り消し</strong></p>
+<p><del>出てきたコマンドプロンプト（黒い画面）上で以下のコマンドを1行ずつ入力（コピペ）し<code>Enter</code>．なお，1行目のコマンドにおいて一時的に実行ポリシーを変更するので，選択肢には「はい」を選択しておいてください．</del></p>
+<p><strong>以下1月21日修正分</strong></p>
+<p>以下のコマンドをコピーしてコマンドプロンプトにペーストすればインストールが始まります．始まらなければエンターを推してください</p>
+<pre><code>@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
+</code></pre><p>表示が終わればインストール完了です．</p>
+<p>続いて念のために以下のコマンドでchocolateyをアップデートしておいてください．</p>
+<pre><code>choco upgrade chocolatey
+</code></pre><h3 id="hugoのインストール方法">HUGOのインストール方法</h3>
+<p>chocolateyが入ってしまえば，HUGOは下記のコマンドで簡単にインストールすることができます．</p>
+<pre><code>choco install hugo
+</code></pre><h3 id="参考にしたページ">参考にしたページ</h3>
+<p><a href="https://chocolatey.org/install">chocolatey公式HP</a><br>
+<a href="https://chocolatey.org/packages/hugo">chocolatey公式HPパッケージ</a><br>
+<a href="https://gohugo.io/">HUGO公式HP</a><br>
+<a href="https://gohugo.io/getting-started/installing#chocolatey-windows">HUGO公式HPインストール方法</a><br>
+<a href="https://qiita.com/Koutaru/items/41a87ea4004fa685de55">Windows環境にchocolateyをインストールし、使う</a></p>
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2019/1003/hugo_table/">hugoでshortcodeを用いてtableにcssを適応</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/hugo"><i class="fa fa-tags"></i> HUGO</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/go"><i class="fa fa-tags"></i> Go</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/web%e3%83%9a%e3%83%bc%e3%82%b8"><i class="fa fa-tags"></i> Webページ</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/posts/2019/0115/new-site/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                    <li class="next" style="float: right">
+                        <a href="/posts/2019/0130/python-readdata/">
+                            次ページ→</a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

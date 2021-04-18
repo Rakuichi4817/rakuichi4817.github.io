@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入 | RakuBlog</title>
+	
+	
+	<meta name="description" content="WindowsにAnacondaを利用してCPU版のTensorFlowとKerasを導入">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	
+	<meta name="og:title" content="Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/cover/python.png" />
+	
+
+	
+	<meta name="og:description" content="こんばんは、4月から始まった会社の研修も、Zoomによるリモート研修になってしまい、一日中パソコンとにらめっこしているRakuichiです。" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Windows%28CPU%29%e3%81%abAnaconda%e3%81%a7TensorFlow2.1.0%e3%81%a8Keras2.3.1%e3%81%ae%e5%b0%8e%e5%85%a5&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0413%2fwindows-cpu-keras%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0413%2fwindows-cpu-keras%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0413%2fwindows-cpu-keras%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Apr 13, 2020
+                                <i class="far fa-clock clock"></i>
+                                6 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</h1>
+                </div>
+
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <p>こんばんは、4月から始まった会社の研修も、Zoomによるリモート研修になってしまい、一日中パソコンとにらめっこしているRakuichiです。</p>
+<p>会社ではJavaの勉強をするので、
+せっかく大学院で利用してきたPythonの感覚を鈍らせないためにも、
+Keras（TensorFlow）を用いたディープラーニングの勉強をすることにしました。
+私は意地でもWindowsマンで、
+WindowsのCPU版での環境を作りましたので、
+今回はそれをまとめたいと思います。
+また、他のネットブログ等には
+インストール時のバージョンなどが書かれていないこともあるので、
+しっかり記しておきたいと思います。
+KerasとTensorFlowの説明に関しては省きますが、
+KerasはTensorFlowのAPIであり、TensorFlowが必須となります。</p>
+<h2 id="環境">環境</h2>
+<p>私の環境は以下になります。
+ラップトップでGPUがないので、CPU版での環境構築になります。
+また、開発にはJupyter Labを利用しているためそちらの設定も行います。</p>
+<ul>
+<li>Windows10 Pro （CPUのみ）</li>
+<li>Anaconda3</li>
+<li>Jupyter Lab</li>
+<li>Python 3.6</li>
+<li>TensorFlow 2.1.0</li>
+<li>Keras 2.3.1</li>
+</ul>
+<h2 id="インストールの手順">インストールの手順</h2>
+<p>インストールの手順は以下になります。
+私が個人的にハマったポイントは、
+3つ目のVisual C++ Build Tools 2019を入れてなかったために、
+TensorFlowのインストールはうまくいくのに、
+Pythonでインポートができない問題が発生した点です。
+（新しいPCに変えて入れるの忘れてましたが、こいつを入れていないと色んなもののインストール時に問題が発生します。）</p>
+<ol>
+<li>Anacondaで仮想環境の作成</li>
+<li>conda環境の切り替えとJupyter上のカーネルの登録</li>
+<li>「Visual C++ Build Tools 2019」のインストール</li>
+<li>「TensorFlow」のインストール</li>
+<li>「Keras」のインストール</li>
+</ol>
+<h3 id="1-anacondaでの仮想環境の作成">1. Anacondaでの仮想環境の作成</h3>
+<p>KerasとTensorFlowには対応したPythonのバージョンが存在しているため、
+普段使っているPythonのバージョンでは動かない可能性があります。
+そのため、Anacondaの仮想環境機能を利用して、
+適したPythonバージョンの環境を作成します。
+ここで、TensorFlowとKerasの公式サイトよりPythonの対応バージョンを見てみます。</p>
+<blockquote>
+<p>Python 3.5–3.7<br>
+<a href="https://www.tensorflow.org/install">TensorFlow公式サイトより</a></p>
+</blockquote>
+<blockquote>
+<p>KerasはPython 2.7-3.6に対応しています．<br>
+<a href="https://keras.io/ja/#_2">Keras公式サイトより</a></p>
+</blockquote>
+<p>この両方を満たすPythonのバージョンのなかから、今回はバージョン <strong>3.6</strong> で環境を作ります。condaの仮想環境を作成するためにコマンドプロンプト上で以下のコマンドを入力します。意味としては、「keras-cpu」という名のAnaconda環境を作成し、「Pythonバージョンの3.6」と「Jupyter」をインストールすることになります。</p>
+<pre><code>conda create -n keras-cpu python=3.6 jupyter
+</code></pre><h3 id="2-conda環境の切り替えとjupyter上のカーネルの登録">2. conda環境の切り替えとJupyter上のカーネルの登録</h3>
+<p>作成した環境に切り替える方法と、Jupyter上で環境を切り替える方法について述べていきます。コマンドプロンプト（コンソール上）でのconda環境の切り替えは以下のとおりです。</p>
+<pre><code>activate keras-cpu
+</code></pre><p>コマンド実行後、<code>C:\Users\ユーザ名&gt;</code> の前に <code>(keras-cpu) </code> が入れば切り替え完了です。続いて、Jupyter上でカーネルを切り替えるための設定をします。
+上記コマンドで環境を切り替えた状態で以下のコマンドを実行します。</p>
+<pre><code>ipython kernel install --user --name=keras-py3.6 --display-name=keras-py3.6
+</code></pre><p>このコマンドにより、今適応されているconda環境がJupyter上で切り替えられるようになります。「&ndash;display-name=」に続けて書かれたものが、Jupyter上で表示されます（多分）。
+実際、登録後にJupyter Labを起動してみると、
+以下のようにPythonのKernelに、もともと存在していた「Python 3」と、
+新たに作成した「keras-py3.6」の2つが出てきます。
+Keras等をインストールしたあとは、
+この新しく作成したKernelを利用して実行するようにしてください。</p>
+
+<link rel="stylesheet" href="https://rakuichi4817.github.io/css/hugo-easy-gallery.css" />
+<div class="box fancy-figure caption-position-bottom caption-effect-fade img-center" style="width:80%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="images/jupyterlab.png" alt="Jupyter Labの画面"/>
+    </div>
+      <figcaption>
+          <p>Jupyter Labの画面</p>
+      </figcaption>
+    <a href="images/jupyterlab.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+<h3 id="3-visual-c-build-tools-2019のインストール">3. 「Visual C++ Build Tools 2019」のインストール</h3>
+<p>こいつをインストールしていない状態でTensorFlowとKerasをインストールすると、インストールはうまくいくものの、いざPythonでインポートするとエラーを吐いて動かない、ということになります。<a href="https://www.tensorflow.org/install/source_windows">公式のTensorFlowのWindowsに関するページ</a>を見ると、以下のように書かれています。
+これに従って、必要なものをインストールしてください。</p>
+<blockquote>
+<h4 id="visual-c-build-tools-2019-をインストールする">Visual C++ Build Tools 2019 をインストールする</h4>
+<p>Visual C++ Build Tools 2019 をインストールします。これは Visual Studio 2019 に付属していますが、別々にインストールすることもできます。</p>
+<ol>
+<li>Visual Studio のダウンロード サイトに移動します。</li>
+<li><a href="https://visualstudio.microsoft.com/ja/downloads/?rr=https%3A%2F%2Fwww.tensorflow.org%2Finstall%2Fsource_windows">再頒布可能パッケージおよびビルドツール</a>を選択します。</li>
+<li>以下をダウンロードしてインストールします。</li>
+</ol>
+<ul>
+<li>Microsoft Visual C++ 2019 再頒布可能ファイル</li>
+<li>Microsoft Build Tools 2019</li>
+</ul>
+<p>引用元： <a href="https://www.tensorflow.org/install/source_windows">https://www.tensorflow.org/install/source_windows</a></p>
+</blockquote>
+<br>
+<h3 id="4-tensorflowのインストール">4. TensorFlowのインストール</h3>
+<p>以上の手順が終わり次第、 <code>pip</code> を使ってTensorFlow（バージョン2.1.0）をインストールします。TensorFlowのバージョン1系では、CPU版とGPU版が分けられて扱われていますが、最新の2系では公式ページ（以下で引用）に記されている通り、両方に対応しているため、気にすることなくインストールが可能です。なお、condaでのインストールも可能ですが、pipでのインストールが推奨されています。</p>
+<blockquote>
+<h4 id="tensorflow-2-パッケージが利用可能">TensorFlow 2 パッケージが利用可能</h4>
+<p>tensorflow - 最新の安定版リリース、CPU および GPU サポート（Ubuntu、Windows 用）</p>
+</blockquote>
+<p>インストールする際には、<code>activate keras-cpu</code> をした状態で以下のコマンドを実行してください。関連パッケージなども勝手にインストールされます。</p>
+<pre><code>pip install tensorflow
+</code></pre><h3 id="5-kerasのインストール">5. Kerasのインストール</h3>
+<p>TensorFlowのインストールが無事終われば、Keras（バージョン2.3.1）は、以下のコマンドで問題なくインストール可能です。</p>
+<pre><code>pip install keras
+</code></pre><h2 id="確認">確認</h2>
+<p>すべての環境構築が終わればJupyter Labで「keras-py3.6」のKernelを選択し、
+いかのプログラムでインポートができれば完了です。
+おそらく「Keras」のインポート時には、バックエンドで何を使っているか（今回の場合はTensorFlow）が表示されると思います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py3" data-lang="py3"><span style="color:#f92672">import</span> tensorflow
+<span style="color:#f92672">import</span> keras</code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<p>今回はCPUのWindows環境で、Anacondaを用いたTensorFlowとKerasの環境構築について説明しました。比較的簡単にできるとは思いますが、
+Visual C++ Build Tools 2019をインストールしないといけないことが、
+落とし穴になっていたりするので注意していただければと思います。</p>
+
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2021/0405/conda-env-jupyter-kernel/">condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について</a></li>
+    
+    <li><a href="/posts/2020/0621/install-elasticstack/">Ubuntu 18.04.4 LTSにElasticsearch、Logstash、Kibanaを導入</a></li>
+    
+    <li><a href="/posts/2020/0525/chant-teach02/">Pythonによる簡単なあいまい歌詞検索（「チャントオシエール」製作 vol.2）</a></li>
+    
+    <li><a href="/posts/2020/0327/chant-teach01/">ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1</a></li>
+    
+    <li><a href="/posts/2019/1027/term-count/">分かち書きされたテキストに対する単語出現回数（Term Count）</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/python"><i class="fa fa-tags"></i> Python</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/keras"><i class="fa fa-tags"></i> Keras</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/tensorflow"><i class="fa fa-tags"></i> TensorFlow</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/deeplearning"><i class="fa fa-tags"></i> DeepLearning</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/windows"><i class="fa fa-tags"></i> windows</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab"><i class="fa fa-tags"></i> インストール</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/apps/chant-teach/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                    <li class="next" style="float: right">
+                        <a href="/posts/2020/0420/study-java04/">
+                            次ページ→</a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

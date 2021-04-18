@@ -1,0 +1,600 @@
+p.mdtext {
+    text-align: center;
+    font-size : 1.4em;
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 992px;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-group {
+        width: 50%;
+    }
+}
+
+@media (max-width: 630px) {
+    .card-group {
+        width: 100%;
+    }
+}
+
+.font-small {
+    font-size: 0.8em;
+    color    : gray;
+}
+
+.col-md-9 {
+    background-color: white;
+}
+
+@media (min-width: 768px) {
+    .col-md-2 {
+        -ms-flex    : 0 0 16.666667%;
+        flex        : 0 0 7%;
+    }
+
+    .col-md-9 {
+        -ms-flex : 0 0 75%;
+        flex     : 0 0 90%;
+        max-width: 80%;
+    }
+}
+
+.index-title {
+    color     : rgba(0, 0, 0, 0.84);
+    margin-top: 20px;
+}
+
+.index-sub {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.index-text {
+    margin-top: 20px;
+    color     : rgba(0, 0, 0, 0.44);
+    text-align: left;
+    width     : fit-content;
+    margin    : auto;
+}
+
+.index-image {
+    width: 400px;
+}
+
+.social-icon {
+    color    : rgba(0, 0, 0, 0.44);
+    font-size: 1.5rem;
+}
+
+.clock {
+    margin-left: 25px;
+}
+
+.jumbotron.fortags a {
+    background: #fff !important;
+}
+
+.error {
+    text-align: center !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color      : white;
+    font-weight: 900;
+    font-size  : larger;
+}
+
+.navbar-light .navbar-toggler {
+    color       : white;
+    border-color: white !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url(../images/menu.png) !important;
+}
+
+.figcaption p {
+    margin: 0 0 0 0 !important;
+}
+
+@media (max-width: 992px) {
+    .navbar-nav li {
+        border-bottom: solid 1px #fff;
+    }
+}
+
+a.btn-pagetop {
+    position             : fixed;
+    right                : 48px;
+    bottom               : 36px;
+    width                : 35px;
+    height               : 40px;
+    border               : #ccd1d9 solid 1px;
+    background           : #fff;
+    color                : #aab2bd;
+    text-align           : center;
+    font-size            : 1.5em;
+    vertical-align       : baseline;
+    display              : -moz-inline-stack;
+    display              : inline-block;
+    vertical-align       : middle;
+    *vertical-align      : auto;
+    zoom                 : 1;
+    *display             : inline;
+    -webkit-border-radius: 50%;
+    -moz-border-radius   : 50%;
+    -ms-border-radius    : 50%;
+    -o-border-radius     : 50%;
+    border-radius        : 50%;
+    -webkit-box-sizing   : border-box;
+    -moz-box-sizing      : border-box;
+    box-sizing           : border-box;
+    z-index              : 30;
+}
+
+ul.tag-cloud {
+    list-style  : none;
+    padding-left: 0;
+}
+
+ul.tag-cloud li {
+    display: inline-block;
+}
+
+ul.tag-cloud li a {
+    display       : inline-block;
+    padding       : 5px;
+    border        : solid 1px #eeeeee;
+    border-radius : 0;
+    color         : darkred;
+    margin        : 5px 5px 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight   : 700;
+    font-size     : 12px;
+}
+
+ul.tag-cloud li a:hover {
+    color          : darkred;
+    text-decoration: none;
+    border-color   : darkred;
+}
+
+.jumbotron {
+    padding         : unset !important;
+    margin-bottom   : unset !important;
+    background-color: #e9ecef;
+    border-radius   : 0.3rem;
+}
+
+.filter-dark {
+    background: rgba(0, 0, 0, 0.75);
+    color     : #fff;
+    height    : auto;
+    position  : relative;
+}
+
+.posi {
+    height    : 50%;
+    max-height: 250px;
+}
+
+@media (max-width: 768px) {
+    .posi {
+        max-height: 180px;
+    }
+}
+
+.kahen_Box {
+    width    : 80%;
+    height   : 80%;
+    min-width: 320px;
+    margin   : 0 10%;
+}
+
+.kahen_img {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    bottom  : 0;
+    margin  : auto;
+    width   : 400px;
+    height  : 100px;
+}
+
+.kahen_img img {
+    width: 120%;
+}
+
+@media (max-width: 768px) {
+    .kahen_img {
+        position: absolute;
+        top     : 0;
+        left    : 0;
+        right   : 0;
+        bottom  : 0;
+        margin  : auto;
+        width   : 300px;
+        height  : 100px;
+    }
+
+    .kahen_img img {
+        width: 100%;
+    }
+}
+
+code {
+    font-size       : 87.5%;
+    background-color: antiquewhite;
+    color           : #e83e8c;
+    word-break      : break-word;
+}
+
+pre code {
+    background-color: unset;
+}
+
+.img-center {
+    margin: auto;
+}
+
+.article-post .h1,
+.article-post .h2,
+.article-post h1,
+.article-post h2{
+    border-bottom: solid 0.9px;
+    border-color : rgba(0, 0, 0, 0.1);
+}
+
+.article-post h1 {
+    margin-top: 30px;
+    font-size : 2.3rem;
+}
+
+.article-post h2 {
+    margin-top: 30px;
+    font-size : 2.0rem;
+}
+
+.article-post h3 {
+    font-size: 1.55rem;
+}
+
+.article-post h4 {
+    font-size    : 1.35rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-post h5 {
+    font-size: 1.05rem;
+}
+
+.article-post h6 {
+    font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+
+    .article-post .h1,
+    .article-post .h2,
+    .article-post .h3,
+    .article-post .h4,
+    .article-post .h5,
+    .article-post .h6,
+    .article-post h1,
+    .article-post h2,
+    .article-post h3,
+    .article-post h4,
+    .article-post h5,
+    .article-post h6 {
+        font-weight  : 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .mainheading h1.posttitle {
+        font-size: 1.8rem;
+    }
+
+    .article-post h1 {
+        font-size: 1.8rem;
+    }
+
+    .article-post h2 {
+        font-size: 1.4rem;
+    }
+
+    .article-post h3 {
+        font-size: 1.2rem;
+    }
+
+    .article-post h4 {
+        font-size: 1.1rem;
+    }
+
+    .article-post h5 {
+        font-size: 1.05rem;
+    }
+
+    .article-post h6 {
+        font-size: 1rem;
+    }
+
+    .article-post p,
+    .article-post blockquote {
+        margin: 0 0 1rem 0;
+    }
+
+    .article-post {
+        line-height: 1.6;
+        font-size  : 0.9rem;
+    }
+}
+
+.pager li a {
+    font-family   : "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size     : 14px;
+    font-weight   : 800;
+    letter-spacing: 1px;
+    padding       : 10px 5px;
+    background    : #fff;
+    border        : solid 0.5px;
+    color         : #404040;
+}
+
+@media only screen and (min-width: 768px) {
+    .pager li a {
+        padding: 15px 25px;
+    }
+}
+
+.pager li a:hover,
+.pager li a:focus {
+    color     : #fff;
+    background: darkred;
+    border    : 1px solid darkred;
+}
+
+.pager {
+    margin       : 10px 0 0;
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+    .pager.blog-pager {
+        margin-top: 40px;
+    }
+}
+
+ul.prev-next {
+    list-style  : none;
+    padding-left: 0;
+}
+
+ul.prev-next li {
+    display: inline-block;
+}
+
+table.sankaku-table {
+    width          : 100%;
+    border-collapse: collapse;
+}
+
+table.sankaku-table tr {
+    border-bottom: solid 2px white;
+}
+
+table.sankaku-table tr:last-child {
+    border-bottom: none;
+}
+
+table.sankaku-table th {
+    position        : relative;
+    text-align      : left;
+    width           : 20%;
+    background-color: #52c2d0;
+    color           : white;
+    text-align      : center;
+    padding         : 10px 0;
+}
+
+table.sankaku-table th:after {
+    display      : block;
+    content      : "";
+    width        : 0px;
+    height       : 0px;
+    position     : absolute;
+    top          : calc(50% - 10px);
+    right        : -10px;
+    border-left  : 10px solid #52c2d0;
+    border-top   : 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+table.sankaku-table td {
+    text-align      : left;
+    border-right    : solid 2px white;
+    text-align      : center;
+    background-color: #eee;
+    padding         : 10px 0;
+}
+
+/*歴代10傑用*/
+div.simple-table table {
+    width        : 100%;
+    border-top   : 1px solid #e2e2e2;
+    border-left  : 1px solid #e2e2e2;
+    background   : #ffffff;
+    margin-bottom: 15px;
+    margin-left  : auto;
+    margin-right : auto;
+    color        : #000000;
+}
+
+div.simple-table table th {
+    border-right : 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    padding      : 10px 0;
+    text-align   : center;
+}
+
+div.simple-table table td {
+    font-size    : 0.9em;
+    border-right : 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    text-align   : center;
+    padding      : 10px 0;
+}
+
+div.simple-table table th {
+    background-color: #f3f0f0;
+}
+
+@media (max-width: 767px) {
+    div.simple-table table th {
+        font-size: 0.98em;
+    }
+
+    div.simple-table table td {
+        font-size: 0.95em;
+    }
+}
+
+.under-title {
+    margin     : auto;
+    color      : #ffffff;
+    font-weight: bold;
+    font-size  : 1.4em;
+}
+
+.under-title div.mid {
+    padding-top   : 40px;
+    padding-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+    .under-title {
+        font-size: 1em;
+    }
+
+    .under-title div.mid {
+        margin        : auto;
+        width         : 80%;
+        padding-top   : 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@font-face {
+    font-family: "Noto Sans JP";
+    font-style : normal;
+    font-weight: 400;
+    src        : local("Noto Sans CJK JP Regular"),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff2) format("woff2"),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff) format("woff"),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.otf) format("opentype");
+}
+
+.text-point {
+    text-align : center;
+    font-weight: bold;
+    font-size  : 1.15em;
+}
+
+div.emb {
+    display: inline-block;
+    width  : 100%;
+}
+
+div.emb img {
+    border-radius: 15px;
+    width        : 35%;
+    max-width    : 300px;
+    margin       : 5px;
+    margin-right : 20px;
+}
+
+@media (max-width: 767px) {
+    div.emb img {
+        border-radius: 15px;
+        width        : 40%;
+        margin       : 10px;
+    }
+}
+
+div.pop-up {
+    text-align   : center;
+    color        : darkred;
+    font-family  : 'Noto Sans CJK JP';
+    font-weight  : bolder;
+    line-height  : 3.0rem;
+    position     : relative;
+    padding      : 0.25em 1em;
+    border-top   : solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+div.pop-up p.main {
+    font-size    : 2.8rem;
+    margin-bottom: 0px;
+}
+
+div.pop-up p.sub {
+    font-size    : 1.5rem;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 480px) {
+    div.pop-up p.main {
+        font-size: 1.8rem !important;
+    }
+
+    div.pop-up p.sub {
+        font-size: 1.0rem !important;
+    }
+
+    div.pop-up {
+        line-height: 2.0rem !important;
+    }
+}
+
+@media (max-width: 780px) {
+    div.pop-up p.main {
+        font-size: 2.4rem;
+    }
+
+    div.pop-up p.sub {
+        font-size: 1.3rem;
+    }
+
+    div.pop-up {
+        line-height: 2.5rem;
+    }
+}
+
+div.pop-up:before,
+div.pop-up:after {
+    content         : '';
+    position        : absolute;
+    top             : -7px;
+    width           : 2px;
+    height          : -webkit-calc(100% + 14px);
+    height          : calc(100% + 14px);
+    background-color: black;
+}
+
+div.pop-up:before {
+    left: 7px;
+}
+
+div.pop-up:after {
+    right: 7px;
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1080px !important;
+    }
+}

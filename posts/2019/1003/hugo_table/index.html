@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>hugoでshortcodeを用いてtableにcssを適応 | RakuBlog</title>
+	
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary" />
+	
+	<meta name="og:title" content="hugoでshortcodeを用いてtableにcssを適応" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/cover/hugo-small.png" />
+	
+
+	
+	<meta name="og:description" content="久しぶりにHugoの投稿をしようと思います。 今回の内容は、 「マークダウン形式で書いたtableに対して、cssを適応させる」 です。 例えば、マ" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2019/1003/hugo_table/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=hugo%e3%81%a7shortcode%e3%82%92%e7%94%a8%e3%81%84%e3%81%a6table%e3%81%abcss%e3%82%92%e9%81%a9%e5%bf%9c&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f1003%2fhugo_table%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f1003%2fhugo_table%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2019%2f1003%2fhugo_table%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Oct 3, 2019
+                                <i class="far fa-clock clock"></i>
+                                2 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">hugoでshortcodeを用いてtableにcssを適応</h1>
+                </div>
+
+                
+                
+                
+                
+                <img class="featured-image img-fluid" src="https://rakuichi4817.github.io/images/cover/hugo.png" alt="thumbnail for this post">
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <p>久しぶりにHugoの投稿をしようと思います。
+今回の内容は、</p>
+<h4 id="マークダウン形式で書いたtableに対してcssを適応させる-です">「マークダウン形式で書いたtableに対して、cssを適応させる」 です。</h4>
+<p>例えば、マークダウン形式でテーブルを書くと、以下のようになります。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">| 選手 | 背番号 | 国 |
+|----------|----------|----------|
+| 古橋 亨梧 | 16 | 日本 |
+| アンドレス・イニエスタ | 8 | スペイン|
+| トーマス・フェルマーレン | 4 | ベルギー |</code></pre></div></p>
+<p><strong>↓これをそのままhtmlに変換したのが以下になります↓</strong></p>
+<table>
+<thead>
+<tr>
+<th>選手</th>
+<th>背番号</th>
+<th>国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>古橋 亨梧</td>
+<td>16</td>
+<td>日本</td>
+</tr>
+<tr>
+<td>アンドレス・イニエスタ</td>
+<td>8</td>
+<td>スペイン</td>
+</tr>
+<tr>
+<td>トーマス・フェルマーレン</td>
+<td>4</td>
+<td>ベルギー</td>
+</tr>
+</tbody>
+</table>
+<p>\</p>
+<p><strong>↑ここまで↑</strong></p>
+<h4 id="うぅん見にくい">うぅん見にくい。</h4>
+<p>こいつに今回紹介する方法でテキトーなcssを適応すると以下のようになります。</p>
+<h2 id="マークダウンで書いたテーブルにcssを適応した結果">マークダウンで書いたテーブルにcssを適応した結果</h2>
+
+    <div class = "simple-table">
+
+<table>
+<thead>
+<tr>
+<th>選手</th>
+<th>背番号</th>
+<th>国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>古橋 亨梧</td>
+<td>16</td>
+<td>日本</td>
+</tr>
+<tr>
+<td>アンドレス・イニエスタ</td>
+<td>8</td>
+<td>スペイン</td>
+</tr>
+<tr>
+<td>トーマス・フェルマーレン</td>
+<td>4</td>
+<td>ベルギー</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<p>.mdファイルに直接テーブルタグを書いてclass適応してっていうのがめんどくさいので、
+できる限りマークダウン形式でテーブルを書いて <strong>shortcode</strong> を用いて、classを適応をします。
+結論から書いていきます。</p>
+<h3 id="markdownの中身記事のもとになるmdファイル">Markdownの中身（記事のもとになる.mdファイル）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md">{{&lt; <span style="color:#f92672">mdtable</span> <span style="color:#a6e22e">class </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;simple-table&#34;</span> &gt;}}
+| 選手 | 背番号 | 国 |
+|----------|----------|----------|
+| 古橋 亨梧 | 16 | 日本 |
+| アンドレス・イニエスタ | 8 | スペイン|
+| トーマス・フェルマーレン | 4 | ベルギー |
+{{&lt; <span style="color:#f92672">mdtable</span> &gt;}}</code></pre></div>
+<h3 id="shortcodeの中身mdtablehtml">Shortcodeの中身（mdtable.html）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{if (.Get &#34;class&#34;)}}
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{{ .Get &#34;</span><span style="color:#a6e22e">class</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}&#34;</span>&gt;
+{{ else }}
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;simple-table&#34;</span>&gt;
+{{ end }}
+{{.Inner | markdownify }}
+&lt;/<span style="color:#f92672">div</span>&gt;</code></pre></div>
+<h3 id="適応したcss">適応したcss</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">div</span>.<span style="color:#a6e22e">simple-table</span> <span style="color:#f92672">table</span> {
+	<span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+	<span style="color:#66d9ef">border-top</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+	<span style="color:#66d9ef">border-left</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+	<span style="color:#66d9ef">background</span>: <span style="color:#ae81ff">#ffffff</span>;
+	<span style="color:#66d9ef">margin-bottom</span>:<span style="color:#ae81ff">15</span><span style="color:#66d9ef">px</span>;
+  	<span style="color:#66d9ef">margin-left</span>: <span style="color:#66d9ef">auto</span>;
+  	<span style="color:#66d9ef">margin-right</span>: <span style="color:#66d9ef">auto</span>;
+     <span style="color:#66d9ef">color</span>:<span style="color:#ae81ff">#000000</span>;
+}
+
+<span style="color:#f92672">div</span>.<span style="color:#a6e22e">simple-table</span> <span style="color:#f92672">table</span> <span style="color:#f92672">th</span>{
+	<span style="color:#66d9ef">border-right</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+	<span style="color:#66d9ef">border-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+ 	<span style="color:#66d9ef">padding</span>:<span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
+}
+<span style="color:#f92672">div</span>.<span style="color:#a6e22e">simple-table</span> <span style="color:#f92672">table</span> <span style="color:#f92672">td</span> {
+	<span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">0.9</span><span style="color:#66d9ef">em</span>;
+	<span style="color:#66d9ef">border-right</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+	<span style="color:#66d9ef">border-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#e2e2e2</span>;
+  <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
+  <span style="color:#66d9ef">padding</span>:<span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#f92672">div</span>.<span style="color:#a6e22e">simple-table</span> <span style="color:#f92672">table</span> <span style="color:#f92672">th</span> {
+	<span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#f3f0f0</span>;
+}</code></pre></div>
+<h2 id="ざっくりとした説明">ざっくりとした説明</h2>
+<p>最初は<code>{{replace}}</code> を使って<code>{{ {.Inner | markdownify }}</code>で、
+マークダウン形式からマークアップに変換し、受け取った<code>&lt;table&gt;</code>の中身を
+書き換える方法を考えていました。しかしあまりうまく行きません。
+ですので回避策として、shortcode側で<code>&lt;table&gt;</code>の外側にクラスを適応した <code>&lt;div&gt;</code>をかまして、
+cssで対応させる手法をとりました。
+処理の流れ等の詳しい説明は今回は割愛いたします～。</p>
+<h3 id="参考ページ">参考ページ</h3>
+<p><a href="https://gohugo.io/content-management/shortcodes/">Hugo shortcodesドキュメント</a></p>
+<h3 id="関連ページ">関連ページ</h3>
+<p><a href="https://maku77.github.io/hugo/shortcode/create-shortcode.html">独自のショートコードを作成する | まくまくHugo/Goノート</a></p>
+
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2019/0121/hugo01/">HUGOのインストール方法（Windows）</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/hugo"><i class="fa fa-tags"></i> HUGO</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/go"><i class="fa fa-tags"></i> Go</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/web%e3%83%9a%e3%83%bc%e3%82%b8"><i class="fa fa-tags"></i> Webページ</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/posts/2019/0805/windows-setup/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                    <li class="next" style="float: right">
+                        <a href="/posts/2019/1027/term-count/">
+                            次ページ→</a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

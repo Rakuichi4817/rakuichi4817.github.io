@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on RakuBlog</title>
+    <link>https://rakuichi4817.github.io/tags/windows/</link>
+    <description>Recent content in Windows on RakuBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>2019 - 2021 Rakuichi - All rights reserved</copyright>
+    <lastBuildDate>Mon, 13 Apr 2020 23:00:00 +0900</lastBuildDate><atom:link href="https://rakuichi4817.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</link>
+      <pubDate>Mon, 13 Apr 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</guid>
+      <description>こんばんは、4月から始まった会社の研修も、Zoomによるリモート研修になってしまい、一日中パソコンとにらめっこしているRakuichiです。</description>
+    </item>
+    
+    <item>
+      <title>【超個人的】Windows初期インストールソフト</title>
+      <link>https://rakuichi4817.github.io/posts/2019/0805/windows-setup/</link>
+      <pubDate>Mon, 05 Aug 2019 22:40:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2019/0805/windows-setup/</guid>
+      <description>最近、合同研究やインターンなどに行かせて頂く機会が増え、 PCのセットアップをする機会も増えました。 そしてその都度、「あれ？何入れてたっけ？」</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>Ubuntu 18.04.4 LTSにElasticsearch、Logstash、Kibanaを導入 | RakuBlog</title>
+	
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	
+	<meta name="og:title" content="Ubuntu 18.04.4 LTSにElasticsearch、Logstash、Kibanaを導入" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/cover/elastic-stack.png" />
+	
+
+	
+	<meta property="og:description" content="UbuntuにElasticstackを導入" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2020/0621/install-elasticstack/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Ubuntu%2018.04.4%20LTS%e3%81%abElasticsearch%e3%80%81Logstash%e3%80%81Kibana%e3%82%92%e5%b0%8e%e5%85%a5&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0621%2finstall-elasticstack%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0621%2finstall-elasticstack%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0621%2finstall-elasticstack%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Jun 21, 2020
+                                <i class="far fa-clock clock"></i>
+                                5 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">Ubuntu 18.04.4 LTSにElasticsearch、Logstash、Kibanaを導入</h1>
+                </div>
+
+                
+                
+                
+                
+                <img class="featured-image img-fluid" src="https://rakuichi4817.github.io/images/cover/elastic-stack.png" alt="thumbnail for this post">
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <p>今回はUbuntuにElastic Stackを導入する手順について記録も兼ねて書いていこうと思います。
+<strong>Elastic Stack</strong>は、Elasticsearch、Kibana、Beats、Logstashの4つのツールの総称です。<a href="https://www.elastic.co/jp/elastic-stack">公式サイト</a>に書かれている各ツールの説明は以下のとおりです。</p>
+<ul>
+<li>Elasticsearch
+<blockquote>
+<p>特定のIPアドレスによるアクティビティを確認する、あるいはトランザクションリクエストのスパイクを分析する、または半径2キロ以内にある牛丼店を探す&hellip; データを使って解くあらゆる&quot;課題&quot;は、最終的に検索の課題です。Elasticsearchなら、データを手軽に、スケーラブルに格納、検索、分析することができます。</p>
+</blockquote>
+</li>
+<li>Kibana
+<blockquote>
+<p>Kibanaでデータを美しく可視化して、探索をはじめてみましょう。ワッフルチャートやヒートマップ、時系列分析など、豊富な機能が揃います。多様なデータソースに対応する事前構成済みのダッシュボードを使って、KPIに注目したプレゼンテーションを作成したり、1つの画面ですべてのデプロイを管理したりすることもできます。</p>
+</blockquote>
+</li>
+<li>Beats
+<blockquote>
+<p>Beatsは、データシッピングに特化した無料かつオープンなプラットフォームです。何百、何千ものマシンからLogstashやElasticsearchにデータを転送できます。</p>
+</blockquote>
+</li>
+<li>Logstash
+<blockquote>
+<p>Logstashは、オープンソースのサーバーサイドデータ処理パイプラインです。膨大な数のソースから同時にデータを取り込み、変換して、お好みの格納庫（スタッシュ）に送信します。</p>
+</blockquote>
+</li>
+</ul>
+<p>この中でもElasticsearch、Kibana、Logstashの3つをインストールしていきます。</p>
+<h2 id="環境">環境</h2>
+<p>今回導入する環境と、インストールしたバージョンは以下のとおりです。</p>
+<ul>
+<li>Ubuntu 18.04.4 LTS</li>
+<li>Java 1.8.0_252</li>
+<li>Elasticsearch 7.8.0</li>
+<li>Kibana 7.8.0</li>
+<li>Logstash 7.8.0</li>
+</ul>
+<h2 id="インストールの手順">インストールの手順</h2>
+<p>インストールの手順は以下になります。</p>
+<ol>
+<li>Javaのインストール</li>
+<li>Elasticsearchのインストール</li>
+<li>Kibanaのインストール</li>
+<li>Logstashのインストール</li>
+</ol>
+<h3 id="1-javaのインストール">1. Javaのインストール</h3>
+<p>ElasticStackはJavaを入れておかないと動かないので入れておきます。</p>
+<pre><code>$ add-apt-repository ppa:webupd8team/java
+$ sudo apt install openjdk-8-jre-headless
+</code></pre><p>確認。</p>
+<pre><code>$ java -version
+openjdk version &quot;1.8.0_252&quot;
+OpenJDK Runtime Environment (build 1.8.0_252-8u252-b09-1~18.04-b09)
+OpenJDK 64-Bit Server VM (build 25.252-b09, mixed mode)
+</code></pre><h3 id="2-elasticsearch">2. Elasticsearch</h3>
+<h4 id="21-インストールと自動起動設定">2.1. インストールと自動起動設定</h4>
+<p>Javaが正しくインストールできたら、下記コマンドでElasticsearchのインストールをします。</p>
+<pre><code>$ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+$ sudo apt install apt-transport-https
+$ echo &quot;deb https://artifacts.elastic.co/packages/7.x/apt stable main&quot; |
+ sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+$ sudo apt update &amp;&amp; sudo apt install elasticsearch
+
+# Elasticsearchの自動起動設定
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable elasticsearch.service
+%$ sudo systemctl disable elasticsearch.service
+</code></pre><h4 id="22-外部接続用に設定の変更">2.2. 外部接続用に設定の変更</h4>
+<p>外部PCからアクセスするための設定を行います。まずはじめにポートの開放を行います。</p>
+<pre><code>$ sudo ufw allow 9200
+$ sudo ufw allow 9300
+</code></pre><p>下記コマンドで、Elasticsearchの設定を書き換えます。</p>
+<pre><code>$ sudo nano /etc/elasticsearch/elasticsearch.yml
+</code></pre><p>以下の内容を加えます。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">network.bind_host</span>: <span style="color:#ae81ff">0</span>
+<span style="color:#f92672">discovery.seed_hosts</span>: [<span style="color:#e6db74">&#34;127.0.0.1&#34;</span>, <span style="color:#e6db74">&#34;[::1]&#34;</span>]</code></pre></div></p>
+<h4 id="23-再起動状態と接続の確認">2.3. 再起動、状態と接続の確認</h4>
+<p>設定を書き換えたら、Elasticsearchの再起動を行います。再起動後、起動状態の確認も行います。<strong>Active</strong>のところに「active」が書かれていれば正しく動いています。</p>
+<pre><code>$ sudo systemctl restart elasticsearch.service
+$ sudo systemctl status elasticsearch.service
+
+---表示---
+ ●elasticsearch.service - Elasticsearch
+   Loaded: loaded (/usr/lib/systemd/system/elasticsearch.service; enabled; vendor preset: ena
+   Active: active (running) since Sun 2020-06-21 15:50:49 JST; 2h 1min ago
+     Docs: https://www.elastic.co
+ Main PID: 3447 (java)
+    Tasks: 110 (limit: 4915)
+   CGroup: /system.slice/elasticsearch.service
+           ├─3447 /usr/share/elasticsearch/jdk/bin/java -Xshare:auto -Des.networkaddress.cach
+           └─3642 /usr/share/elasticsearch/modules/x-pack-ml/platform/linux-x86_64/bin/contro
+</code></pre><p>&lt;サーバのIPアドレス&gt;:9200で外部からアクセス可能か確認することができます。
+接続すると以下のような内容が表示されるはずです。</p>
+<pre><code>{
+  &quot;name&quot; : &quot;&lt;サーバ名&gt;&quot;,
+  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;cluster_uuid&quot; : &quot;&lt;cluster_uuid&gt;&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;7.8.0&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;deb&quot;,
+    &quot;build_hash&quot; : &quot;&lt;build_hash&gt;&quot;,
+    &quot;build_date&quot; : &quot;2020-06-14T19:35:50.234439Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;8.5.1&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+</code></pre><h3 id="3-kibana">3. Kibana</h3>
+<h4 id="31-インストールと自動起動設定">3.1. インストールと自動起動設定</h4>
+<p>インストールと自動起動設定は下記コマンドで可能です。</p>
+<pre><code># Kibanaのインストール
+$ sudo apt install kibana
+
+# Kibanaの自動起動設定
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable kibana.service
+%$ sudo systemctl disable kibana.service
+</code></pre><h4 id="32-外部接続用に設定の変更">3.2. 外部接続用に設定の変更</h4>
+<p>Elasticsearchと同様に外部PCからアクセスするための設定を行います。まずはじめにポートの開放を行います。</p>
+<pre><code>$ sudo ufw allow 5451
+</code></pre><p>下記コマンドで、Kibanaの設定を書き換えます。</p>
+<pre><code>$ sudo nano /etc/kibana/kibana.yml
+</code></pre><p>以下のように書き換えます。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">server .host </span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span></code></pre></div></p>
+<h4 id="33-再起動状態と接続の確認">3.3. 再起動、状態と接続の確認</h4>
+<p>設定を書き換えたら、Kibanaの再起動を行います。再起動後、起動状態の確認も行います。<strong>Active</strong>のところに「active」が書かれていれば正しく動いています。</p>
+<pre><code>$ sudo systemctl restart kibana.service
+$ sudo systemctl status kibana.service
+
+---表示---
+ ● kibana.service - Kibana
+   Loaded: loaded (/etc/systemd/system/kibana.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sun 2020-06-21 15:42:32 JST; 3h 5min ago
+ Main PID: 860 (node)
+    Tasks: 11 (limit: 4915)
+   CGroup: /system.slice/kibana.service
+           └─860 /usr/share/kibana/bin/../node/bin/node /usr/share/kibana/bin/../src/cli
+</code></pre><p>ここまでくれば、「&lt;サーバのIPアドレス&gt;:5601」でKibanaの画面を確認できます。
+
+<link rel="stylesheet" href="https://rakuichi4817.github.io/css/hugo-easy-gallery.css" />
+<div class="box fancy-figure caption-position-bottom caption-effect-fade img-center" style="width:90%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="images/kibana.png" alt="Kibana画面"/>
+    </div>
+      <figcaption>
+          <p>Kibana画面</p>
+      </figcaption>
+    <a href="images/kibana.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</p>
+<h3 id="4-logstash">4. Logstash</h3>
+<h4 id="41-インストールと自動起動設定">4.1. インストールと自動起動設定</h4>
+<p>インストールと自動起動設定は下記コマンドで可能です。</p>
+<pre><code># Logstashのインストール
+$ sudo apt install logstash
+
+# Logstashの自動起動設定
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable logstash.service
+%$ sudo systemctl disable logstash.service
+</code></pre><h4 id="42-logstashの設定書き換え">4.2. Logstashの設定書き換え</h4>
+<p>Web上の解説サイトでは <code>/etc/logstash/conf.d/</code> 配下に <code>.conf</code> ファイルを置くと、
+設定が読み込まれてデータの投入ができると書いていルところもありますが、どうやら現在のバージョンでは、自ら明示的に書いてやらないといけないようです。
+変更部分はLogstash本体の設定ファイル<code>/etc/logstash/logstash.yml</code>内の
+<code>path.config:</code>の部分を以下のように書き換えます。</p>
+<pre><code>$ sudo nano /etc/logstash/logstash.yml
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># 元の状態</span>
+<span style="color:#75715e"># path.config:</span>
+<span style="color:#75715e"># ↓書き直した後</span>
+<span style="color:#f92672">path.config</span>: <span style="color:#ae81ff">/etc/logstash/conf.d</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<p>今回は、Elasticstackのインストール方法について備忘録代わりにまとめました。
+今後、自分が持っているテキストデータなどをElasticでインデクシングして、活用していこうと思います。</p>
+
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2020/0413/windows-cpu-keras/">Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/elasticstack"><i class="fa fa-tags"></i> Elasticstack</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab"><i class="fa fa-tags"></i> インストール</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/posts/2020/0525/chant-teach02/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                    <li class="next" style="float: right">
+                        <a href="/posts/2020/1209/glad-to-buy1/">
+                            次ページ→</a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

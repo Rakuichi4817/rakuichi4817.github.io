@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>study on RakuBlog</title>
+    <link>https://rakuichi4817.github.io/tags/study/</link>
+    <description>Recent content in study on RakuBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>2019 - 2021 Rakuichi - All rights reserved</copyright>
+    <lastBuildDate>Mon, 20 Apr 2020 18:26:00 +0900</lastBuildDate><atom:link href="https://rakuichi4817.github.io/tags/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Java勉強-第4回】キーボード入力と文字列の連結</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0420/study-java04/</link>
+      <pubDate>Mon, 20 Apr 2020 18:26:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0420/study-java04/</guid>
+      <description>Java勉強記録第3回の今回は、 キーボド入力と、文字列の連結についてまとめていきます。 文字列の連結の仕方を工夫しないと、データ量が増えたとき</description>
+    </item>
+    
+    <item>
+      <title>【Java勉強-第3回】簡単なif・else文</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0228/study-java03/</link>
+      <pubDate>Fri, 28 Feb 2020 16:26:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0228/study-java03/</guid>
+      <description>Java勉強記録第3回の今回は、 簡単なif・else文を試していこうと思います。 今回は本当に触る程度で、 今後実課題に取り組む時に（そんなとき</description>
+    </item>
+    
+    <item>
+      <title>【Java勉強-第2回】変数について</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0227/study-java02/</link>
+      <pubDate>Thu, 27 Feb 2020 22:26:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0227/study-java02/</guid>
+      <description>お久しぶりです。 修士論文やら学会に提出する論文やらで、 ブログを更新するのをサボってしまっていました。 反省して頑張っていこうと思います。 さて、</description>
+    </item>
+    
+    <item>
+      <title>【Java勉強-第1回】EclipceでHello World!</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0113/study-java01/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0113/study-java01/</guid>
+      <description>新年あけましておめでとうございます。 4月から入社する会社でJavaを利用するので、 先駆けて勉強していこうと思い、せっかくなので勉強の記録をま</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について | RakuBlog</title>
+	
+	
+	<meta name="description" content="最近、Anacondaで新しい仮想環境を作成し、Jupyter側からkernelを選択するとImportErrorが出るようになっていました。今回はこれの回避方法を書いていきます。">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	
+	<meta name="og:title" content="condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/cover/python.png" />
+	
+
+	
+	<meta property="og:description" content="condaを用いた新規仮想環境によるkernelのImportErrorについて" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2021/0405/conda-env-jupyter-kernel/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=conda%e3%81%ae%e4%bb%ae%e6%83%b3%e7%92%b0%e5%a2%83%e3%82%92%e7%94%a8%e3%81%84%e3%81%9fJupyter%e3%81%ae%e8%a4%87%e6%95%b0kernel%e5%88%87%e3%82%8a%e6%9b%bf%e3%81%88%e6%99%82%e3%81%ae%e3%82%a8%e3%83%a9%e3%83%bc%ef%bc%88ImportError%3a%20DLL%20load%20failed%ef%bc%89%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2021%2f0405%2fconda-env-jupyter-kernel%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2021%2f0405%2fconda-env-jupyter-kernel%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2021%2f0405%2fconda-env-jupyter-kernel%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Apr 5, 2021
+                                <i class="far fa-clock clock"></i>
+                                5 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について</h1>
+                </div>
+
+                
+                
+                
+                
+                <img class="featured-image img-fluid" src="https://rakuichi4817.github.io/images/cover/python.png" alt="thumbnail for this post">
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <blockquote>
+<p>以下記事は2020年12月25日に更新したものになりますが、2021年4月5日現在その他の方法で解決できたので追加で記載します。</p>
+</blockquote>
+<p>ここ最近、Anacondaで新しい仮想環境を作成し、Jupyter側からkernelを選択するという方法がうまく行かなくなっていました。過去の記事（<a href="/posts/2020/0413/windows-cpu-keras/">Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</a>）でもこの方法を使ってkeras環境を作ったりしていたのですが、今は同じ方法だと「ImportError」が発生し、うまくいきません。今回はこちらの回避方法を書いていきたいと思います。</p>
+<h2 id="実行環境">実行環境</h2>
+<ul>
+<li>Windows10 Pro（64bit）</li>
+<li>Anaconda3 4.9.0（64bit）</li>
+</ul>
+<h2 id="今までの方法importerrorが出る">今までの方法（ImportErrorが出る）</h2>
+<h3 id="環境構築の基本的流れ">環境構築の基本的流れ</h3>
+<p>基本的な、Anacondaを用いたIPython（jupyter）の新規Kernel作成方法は以下のとおりです。</p>
+<ol>
+<li>condaで新しい仮想環境を作成</li>
+<li>新しい環境のアクテイブ化</li>
+<li>IPythonのカーネルの登録</li>
+</ol>
+<p>このあたりはQiitaにも記事が上がっていますので、そちらで詳細を確認していただければと思います。（<a href="https://qiita.com/tomochiii/items/8b937f15c79a0c3eae0e" target="_blank">Jupyterで複数カーネルを簡単に選択するための設定</a>）</p>
+<p>この流れを今までは以下のような形で行っていました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 仮想環境の構築</span>
+conda create -n test python<span style="color:#f92672">=</span>3.6 ipykernel
+<span style="color:#75715e"># 仮想環境のアクティブ化</span>
+conda activate test
+<span style="color:#75715e"># IPythonのカーネルの登録</span>
+ipython kernel install --user --name<span style="color:#f92672">=</span>test --display-name<span style="color:#f92672">=</span>test
+</code></pre></div><p>ここまで設定が終われば以下のコマンドで、新しく環境ができていることを確認できます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 仮想環境一覧の確認</span>
+conda info -e
+<span style="color:#75715e"># 登録したIPythonのカーネル一覧の確認</span>
+jupyter kernelspec list
+</code></pre></div><h3 id="エラー内容">エラー内容</h3>
+<p>上記の処理で登録ができていることを確認できたら、<code>conda deactivate</code>をするなり新しいコマンドプロンプト（パスを通していなければAnacondaプロンプト）を開くなりして、新しい仮想環境をアクティブ化していない状況にします（基本の状況）。この状態にして、コマンドプロンプト上で<code>jupyter lab</code>を実行します。</p>
+<p>立ち上がったjupyter labの画面で、以下の赤丸の部分を選択することで「jupyter kernelspec list」で確認できた中からKernelを選択できるのですが、ここで新しく作った「test」を選択するとエラーが発生します。</p>
+<p>
+<link rel="stylesheet" href="https://rakuichi4817.github.io/css/hugo-easy-gallery.css" />
+<div class="box fancy-figure caption-position-bottom img-center" style="width:90%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="images/jupyter-lab.png" alt="jupyter lab上でのカーネル選択"/>
+    </div>
+      <figcaption>
+          <p>jupyter lab上でのカーネル選択</p>
+      </figcaption>
+    <a href="images/jupyter-lab.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+
+<div class="box fancy-figure caption-position-bottom img-center" style="width:90%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="images/jupyter-lab2.png" alt="jupyter lab上でのカーネル選択（ノートブック選択時）"/>
+    </div>
+      <figcaption>
+          <p>jupyter lab上でのカーネル選択（ノートブック選択時）</p>
+      </figcaption>
+    <a href="images/jupyter-lab2.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</p>
+<p>以下、エラー内容になります。</p>
+<pre><code>[I 14:03:45.643 LabApp] Kernel started: ed0d72a8-d867-43e6-86b4-fb1e22c268e2, name: test
+Traceback (most recent call last):
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\runpy.py&quot;, line 193, in _run_module_as_main
+    &quot;__main__&quot;, mod_spec)
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\ipykernel_launcher.py&quot;, line 15, in &lt;module&gt;
+    from ipykernel import kernelapp as app
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\ipykernel\__init__.py&quot;, line 2, in &lt;module&gt;
+    from .connect import *
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\ipykernel\connect.py&quot;, line 18, in &lt;module&gt;
+    import jupyter_client
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\jupyter_client\__init__.py&quot;, line 4, in &lt;module&gt;
+    from .connect import *
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\jupyter_client\connect.py&quot;, line 21, in &lt;module&gt;
+    import zmq
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\__init__.py&quot;, line 55, in &lt;module&gt;
+    from zmq import backend
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\backend\__init__.py&quot;, line 40, in &lt;module&gt;
+    reraise(*exc_info)
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\utils\sixcerpt.py&quot;, line 34, in reraise
+    raise value
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\backend\__init__.py&quot;, line 27, in &lt;module&gt;
+    _ns = select_backend(first)
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\backend\select.py&quot;, line 28, in select_backend
+    mod = __import__(name, fromlist=public_api)
+  File &quot;C:\Users\rakuichi\anaconda3\envs\test\lib\site-packages\zmq\backend\cython\__init__.py&quot;, line 6, in &lt;module&gt;
+    from . import (constants, error, message, context,
+ImportError: DLL load failed: 指定されたモジュールが見つかりません。
+</code></pre><p>何やら「zmq」周りでエラーが起きているということは確認できます。いろいろググって解決方法を調べたのですが、自分の環境ではうまくいきませんでした。一応調べたサイトはいくつかのっけておきます。これらは、「環境変数を見直す」、「dllファイルをコピーして」、「仮想環境のアクティブ化をしてからjupyter起動して」といった解決方法でした。
+確かに「仮想環境のアクティブ化をしてからjupyter起動」であれば問題なく動くのですが、不便なので嫌です（笑）。</p>
+<ul>
+<li><a href="https://github.com/jupyter/notebook/issues/4569">https://github.com/jupyter/notebook/issues/4569</a></li>
+<li><a href="https://qiita.com/kamyayou/items/ca71743d28d9f2b9479e">https://qiita.com/kamyayou/items/ca71743d28d9f2b9479e</a></li>
+<li><a href="https://stackoverflow.com/questions/46353215/import-error-dll-load-failed-in-jupyter-notebook-but-working-in-py-file">https://stackoverflow.com/questions/46353215/import-error-dll-load-failed-in-jupyter-notebook-but-working-in-py-file</a></li>
+<li><a href="https://www.366service.com/jp/qa/68c69f3d4d7a6e47c1c3225bd45ee504">https://www.366service.com/jp/qa/68c69f3d4d7a6e47c1c3225bd45ee504</a></li>
+</ul>
+<p>では実際に解決した方法を示していきます。</p>
+<h2 id="importerrorを解決した方法2020年12月25日時点">ImportErrorを解決した方法（2020年12月25日時点）</h2>
+<p>結論から言うと、今回とった解決方法は「<strong>パッケージ<code>pyzmq</code>のバージョンを20から落とす。</strong>」というものになります。</p>
+<p>ソースの確認等を細かく行っていないので、具体的な理由はわかりませんが、上記のエラーのところで「zmq」が怪しいことは確認できました。そこで、今までうまくKernelの切り替えができていた環境を見てみると「pyzmq」のバージョンが「19.0.2」になっており、新しく作って失敗した方は「20.0.0」となっていました。そこで試しにバージョンを落としてみると正常に動くようになりました！（細かく調べる気はなし）</p>
+<p>そこで、新しく環境を作る際に、以下のように「pyzmq」のバージョンを指定して上げてください。そうすると問題なくKernelの切り替えが動作すると思います。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># pyzmqのバージョンを指定して仮想環境の構築</span>
+conda create -n test python<span style="color:#f92672">=</span>3.6 ipykernel pyzmq<span style="color:#f92672">=</span>19.0
+<span style="color:#75715e"># 仮想環境のアクティブ化</span>
+conda activate test
+<span style="color:#75715e"># IPythonのカーネルの登録</span>
+ipython kernel install --user --name<span style="color:#f92672">=</span>test --display-name<span style="color:#f92672">=</span>test
+</code></pre></div><blockquote>
+<p>Python（バージョン3.9）の場合pyzmqはバージョン20以上必須となりますので、Python3.9を使う場合はどうしましょうか。。</p>
+</blockquote>
+<h2 id="2021年4月5日追加importerrorを解決した方法">【2021年4月5日追加】ImportErrorを解決した方法</h2>
+<p>jupyterlabのバージョン3が出たので、改めて環境構築をしようとしたところ、上記手法でも問題が発生してしまったため、改めて色々調査しました。一番参考になったQiita記事を貼っておきます。</p>
+<p><a href="https://qiita.com/M_Study/items/e31f63b364f621da8edb">Anacondaの仮想環境でJupyter Notebookを動かすときにエラー</a></p>
+<p>これを踏まえて、新たに仮想環境を作成する際には以下のコマンドを実行するようにしています。私の環境ではpythnのバージョン3.6から3.8まで動作することを確認できました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># pyzmqのバージョンを指定して仮想環境の構築</span>
+conda create -n test python<span style="color:#f92672">=</span>3.6 jupyter
+<span style="color:#75715e"># 仮想環境のアクティブ化</span>
+conda activate test
+<span style="color:#75715e"># IPythonのカーネルの登録</span>
+ipython kernel install --user --name<span style="color:#f92672">=</span>test --display-name<span style="color:#f92672">=</span>test
+</code></pre></div><h2 id="まとめ">まとめ</h2>
+<p>今回はAnacondaを使って、複数のKernelをjupyter上で切り替える際に起きるエラーの解決方法について書きました。調べていく中で、そもそもこの問題がWindowsでしか起きないとかも書いていたので、Windowsの不便さも感じました。それでもWindowsでできる限り突き進みたい&hellip;。</p>
+
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2020/0525/chant-teach02/">Pythonによる簡単なあいまい歌詞検索（「チャントオシエール」製作 vol.2）</a></li>
+    
+    <li><a href="/posts/2020/0413/windows-cpu-keras/">Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</a></li>
+    
+    <li><a href="/posts/2020/0327/chant-teach01/">ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1</a></li>
+    
+    <li><a href="/posts/2019/1027/term-count/">分かち書きされたテキストに対する単語出現回数（Term Count）</a></li>
+    
+    <li><a href="/posts/2019/0527/python-css-selector/">CSSセレクタメモ書き</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/python"><i class="fa fa-tags"></i> Python</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/anaconda"><i class="fa fa-tags"></i> Anaconda</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/posts/2020/1213/glad-to-buy2/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>

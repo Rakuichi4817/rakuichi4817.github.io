@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on RakuBlog</title>
+    <link>https://rakuichi4817.github.io/tags/python/</link>
+    <description>Recent content in Python on RakuBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <copyright>2019 - 2021 Rakuichi - All rights reserved</copyright>
+    <lastBuildDate>Mon, 05 Apr 2021 19:00:00 +0900</lastBuildDate><atom:link href="https://rakuichi4817.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について</title>
+      <link>https://rakuichi4817.github.io/posts/2021/0405/conda-env-jupyter-kernel/</link>
+      <pubDate>Mon, 05 Apr 2021 19:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2021/0405/conda-env-jupyter-kernel/</guid>
+      <description>以下記事は2020年12月25日に更新したものになりますが、2021年4月5日現在その他の方法で解決できたので追加で記載します。 ここ最近、A</description>
+    </item>
+    
+    <item>
+      <title>Pythonによる簡単なあいまい歌詞検索（「チャントオシエール」製作 vol.2）</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0525/chant-teach02/</link>
+      <pubDate>Mon, 25 May 2020 23:30:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0525/chant-teach02/</guid>
+      <description>今回は、以前作成したヴィッセル神戸チャント検索ボット「チャントオシエール」のチャント検索部分について、どのような仕組みで実現しているかを書こ</description>
+    </item>
+    
+    <item>
+      <title>Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</link>
+      <pubDate>Mon, 13 Apr 2020 23:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0413/windows-cpu-keras/</guid>
+      <description>こんばんは、4月から始まった会社の研修も、Zoomによるリモート研修になってしまい、一日中パソコンとにらめっこしているRakuichiです。</description>
+    </item>
+    
+    <item>
+      <title>ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1</title>
+      <link>https://rakuichi4817.github.io/posts/2020/0327/chant-teach01/</link>
+      <pubDate>Fri, 27 Mar 2020 09:00:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2020/0327/chant-teach01/</guid>
+      <description>LINE Botを使ってヴィッセル神戸のチャント検索ができる 「チャントオシエール」を作成していこうと思います。 （実はすでに結構作っています） 作成に伴</description>
+    </item>
+    
+    <item>
+      <title>分かち書きされたテキストに対する単語出現回数（Term Count）</title>
+      <link>https://rakuichi4817.github.io/posts/2019/1027/term-count/</link>
+      <pubDate>Sun, 27 Oct 2019 15:30:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2019/1027/term-count/</guid>
+      <description>パッケージを使わずに文書中の単語の出現回数（Term Count）を 求めたいときのプログラムです。お手軽に確認できます。 テストデータ ヴィッセル</description>
+    </item>
+    
+    <item>
+      <title>CSSセレクタメモ書き</title>
+      <link>https://rakuichi4817.github.io/posts/2019/0527/python-css-selector/</link>
+      <pubDate>Mon, 27 May 2019 22:30:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2019/0527/python-css-selector/</guid>
+      <description>PythonでWebスクレイピングする際にCSSセレクタについてよく忘れるのでメモ書き。 書き方 説明 セレクタA セレクタB 下の階層の要素 セレクタ</description>
+    </item>
+    
+    <item>
+      <title>Pythonでデータ量の多いファイルを読み込む際の工夫</title>
+      <link>https://rakuichi4817.github.io/posts/2019/0130/python-readdata/</link>
+      <pubDate>Wed, 30 Jan 2019 10:30:00 +0900</pubDate>
+      
+      <guid>https://rakuichi4817.github.io/posts/2019/0130/python-readdata/</guid>
+      <description>&lt;p&gt;今まで，Pythonでサイズの大きなテキストファイルから条件にあったデータのみ抽出したい時に，&lt;code&gt;readlines()&lt;/code&gt;を使用していました．&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

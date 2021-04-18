@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.82.0" />
+	
+	<link rel="icon" href="/images/favicon.png">
+	
+	
+	<title>ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1 | RakuBlog</title>
+	
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/font.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<script data-ad-client="ca-pub-8480565306518637" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+	<script src="https://embed.small.chat/TR7JL8TK4GRXNR0FGX.js" async></script>
+	
+	
+	<meta name="twitter:card" content="summary" />
+	
+	<meta name="og:title" content="ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1" />
+
+	
+	<meta property="og:image" content="https://rakuichi4817.github.io/images/cover/chant_teach.jpg" />
+	
+
+	
+	<meta property="og:description" content="ヴィッセル神戸のチャント検索ボットを作成します。" />
+	
+
+	<meta name="twitter:url" content="https://rakuichi4817.github.io/posts/2020/0327/chant-teach01/" />
+	<meta name="twitter:site" content="@MuRaku4817" />
+	<meta name="twitter:creator" content="@MuRaku4817" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://rakuichi4817.github.io">
+
+            
+            <img src="/images/logo2.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/posts">Posts</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/apps">Apps</a>
+                </li>
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">About Me</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+
+<div class="main-content">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-2 pl-0"><div class="share">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=%e3%83%b4%e3%82%a3%e3%83%83%e3%82%bb%e3%83%ab%e7%a5%9e%e6%88%b8%e3%83%81%e3%83%a3%e3%83%b3%e3%83%88%e6%a4%9c%e7%b4%a2%e3%83%9c%e3%83%83%e3%83%88%e3%80%8c%e3%83%81%e3%83%a3%e3%83%b3%e3%83%88%e3%82%aa%e3%82%b7%e3%82%a8%e3%83%bc%e3%83%ab%e3%80%8d%e8%a3%bd%e4%bd%9c%20vol.1&url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0327%2fchant-teach01%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0327%2fchant-teach01%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2frakuichi4817.github.io%2fposts%2f2020%2f0327%2fchant-teach01%2f" onclick="window.open(this.href, 'google-share', 'width=550,height=435');return false;">
+        <i class="fab fa-google"></i>
+        </a>
+        </li>
+        
+    </ul>
+
+    
+</div>
+</div>
+            
+            <div class="col-md-9 flex-first flex-md-unordered">
+                <div class="mainheading">
+                    
+                    
+                    
+                    
+                    <div class="post-top-meta">
+                        <div>
+                            <img class="author-thumb" src="/images/raku.jpg" alt="Rakuichi">
+                        </div>
+                        <div>
+                            <a target="_blank" class="link-dark">Rakuichi</a><br>
+                            <span class="author-description">
+                                <br>
+                                <i class="far fa-star"></i>
+                                Mar 27, 2020
+                                <i class="far fa-clock clock"></i>
+                                5 min read
+                            </span>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <h1 class="posttitle">ヴィッセル神戸チャント検索ボット「チャントオシエール」製作 vol.1</h1>
+                </div>
+
+                
+                
+                
+                
+                <img class="featured-image img-fluid" src="https://rakuichi4817.github.io/images/cover/vissel.jpg" alt="thumbnail for this post">
+                
+                
+                
+
+                
+                <div class="article-post">
+                    <p>LINE Botを使ってヴィッセル神戸のチャント検索ができる
+「チャントオシエール」を作成していこうと思います。
+（実はすでに結構作っています）
+作成に伴って記録的なものを始めようと思います。
+今回は第1回なので、以下の内容を書こうと思います。</p>
+<ul>
+<li>作ろうと思ったきっかけ</li>
+<li>作成に用いるもの</li>
+</ul>
+<h2 id="作ろうと思ったきっかけ">作ろうと思ったきっかけ</h2>
+<p>修士論文の提出を終え、
+修士生活最後の学会発表も終えて、
+自由な時間ができたのに、
+コロナの影響であまり家から出られないので、
+なんか作ろっかなと思ったのがきっかけです。
+「どうせなら自分の好きなことに関連させたいなぁ。」ということで、
+ヴィッセル神戸に関するものを作ることにし、
+せっかくなので、私がヴィッセル神戸にハマりだした時に、
+スタジアムでの観戦時に感じていた不満を解決しようと思いました。
+その不満が以下の2つです。</p>
+<ul>
+<li><strong>「チャント歌いたいけど歌詞わからねぇ！」</strong></li>
+<li><strong>「歌詞検索したいけどWeb検索じゃ通信遅え！」</strong></li>
+</ul>
+<p>聞こえてくる熱いチャントを一緒に歌おうにも、
+何を言っているのか、一部しかわからないことって多くないですか？
+かといって、スマホで検索しようにも、通信が混雑してなかなかWeb検索できません。
+ここで、</p>
+<p class="text-point">歌詞の一部からチャントを検索できるチャットボットがあれば便利なのでは？</p>
+<p>と考えました。
+聞こえてきたチャントの聞こえた部分だけで検索できれば、
+一緒に歌うことが可能で、
+チャットボットであればテキストベースの通信のため、
+通信速度的問題も解決できる（はず）。
+チャットボットで一番身近なものは <strong>LINEボット</strong> だと思うので
+（実装したことがあるのがLINEボット）、
+LINEで「チャント検索」と「選手検索」ができるチャットボット
+「<strong>チャントオシエール</strong>」を作成することにしました。</p>
+<h3 id="チャントオシエールについて">「チャントオシエール」について</h3>
+<div class="emb">
+<img src="images/chant_teach.jpg" style="float:right">
+<p>右の画像が「チャントオシエール」君のプロフィール画像です。
+知り合いに書いてもらった可愛いイラストを利用しています！
+実装する主な機能は以下の3つです。</p>
+<ul>
+<li>歌詞によるチャント検索</li>
+<li>名前や背番号、ポジションによる選手検索</li>
+<li>機能切り替えメニュー</li>
+</ul>
+<p>まず、メイン機能である歌詞による <strong>チャント検索</strong> は、
+チャントの一部を「チャントオシエール」に送信することで、
+それを含むチャントを送り返してくれる機能です。
+次に、<strong>選手検索</strong> は、名前や背番号、ポジションを送信することで、
+選手の簡単な情報を表示する機能です。</p>
+</div>
+また、これらの機能を切り替えるメニューを作成し、
+利用ユーザ毎にどちらの機能を利用しているかをデータベースに保存することで、
+ユーザ毎に検索機能を切り替えます。
+開発段階ですが、イメージ図を貼っておきます。
+
+
+<div class="gallery caption-position-bottom caption-effect-slide hover-effect-zoom hover-transition" itemscope itemtype="http://schema.org/ImageGallery">
+	  
+
+<link rel="stylesheet" href="https://rakuichi4817.github.io/css/hugo-easy-gallery.css" />
+<div class="box " >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img" style="background-image: url('images/menu.png');">
+      <img itemprop="thumbnail" src="images/menu.png" alt="メニュー画面"/>
+    </div>
+      <figcaption>
+          <p>メニュー画面</p>
+      </figcaption>
+    <a href="images/menu.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+
+<div class="box " >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img" style="background-image: url('images/search1.png');">
+      <img itemprop="thumbnail" src="images/search1.png" alt="歌詞によるチャント検索"/>
+    </div>
+      <figcaption>
+          <p>歌詞によるチャント検索</p>
+      </figcaption>
+    <a href="images/search1.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+
+<div class="box " >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img" style="background-image: url('images/search2.jpg');">
+      <img itemprop="thumbnail" src="images/search2.jpg" alt="ポジションによる選手検索"/>
+    </div>
+      <figcaption>
+          <p>ポジションによる選手検索</p>
+      </figcaption>
+    <a href="images/search2.jpg" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+</div>
+
+<h2 id="作成に用いるもの">作成に用いるもの</h2>
+<p>「チャントオシエール」君の作成に利用するものは大きく分けて以下の4つです。</p>
+<ul>
+<li>LINE Messaging API（<a href="https://developers.line.biz/ja/services/messaging-api/">公式サイト</a>）</li>
+<li>Python3（<a href="https://github.com/line/line-bot-sdk-python">line-bot-sdk-python</a>）</li>
+<li>MySQL</li>
+<li>ngrok</li>
+</ul>
+<p>かなり雑な処理のイメージ図はこんな感じです。
+
+
+<div class="box fancy-figure caption-position-bottom caption-effect-fade img-center" style="width:80%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" >
+    <div class="img">
+      <img itemprop="thumbnail" src="images/sys_image.png" alt="全体イメージ"/>
+    </div>
+      <figcaption>
+          <p>全体イメージ</p>
+      </figcaption>
+    <a href="images/sys_image.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+<br></p>
+<h4 id="line-messaging-api">LINE Messaging API</h4>
+<p><strong>主な役割</strong></p>
+<ul>
+<li>メッセージの送受信</li>
+</ul>
+<p>LINEでチャットボットを作成するためのAPIです。
+このAPIの応答メッセージ機能を使って、
+利用者から検索したい内容が送られた時に、
+検索結果を返信しています。</p>
+<br>
+<h4 id="python3">Python3</h4>
+<p><strong>主な役割</strong></p>
+<ul>
+<li>APIを叩く</li>
+<li>チャント、選手の検索機能</li>
+<li>MySQLとの接続</li>
+</ul>
+<p>今回は私のメイン使用言語であるPythonを利用してLINE Messaging APIを叩いていきます。
+APIを叩くにあたってGithubで公開されている公式SDKを利用しています。
+他のいくつかの言語にも対応しているようです。<br>
+検索機能についての詳細は今後の記事で触れる予定です。
+この検索部分が今回のチャットボットのポイントになると思います。
+例えば、イニエスタのチャントを検索したい時に、
+間違って「イエニスタ」と入力してしまう人もいると思います
+（そんなにいっぱいの人に使ってもらえるかは置いておいて）。
+このような場合でも、ちゃんとイニエスタのチャントを検索できるようにします。
+また、後述のMySQLとのデータのやり取りもPythonを用いています。</p>
+<br>
+<h4 id="mysql">MySQL</h4>
+<p><strong>主な役割</strong></p>
+<ul>
+<li>ユーザの検索モードの保管</li>
+</ul>
+<p>現在（2020年3月27日時点）では「チャント検索」と「選手検索」の2つのモードを実装予定で、
+利用するユーザ毎にどちらのモードであるかの情報が必要になります。
+今回はMySQLを使ってこれらの情報を管理することにしました。
+DBをこういったサービス運用に利用したことがなかったので、
+練習という意味も込めてMySQLを利用しています。</p>
+<br>
+<h4 id="ngrok">ngrok</h4>
+<p><strong>主な役割</strong></p>
+<ul>
+<li>ローカルサーバで起動しているサービスの外部公開</li>
+</ul>
+<p>昔使っていたノートPCにUbuntuを入れて簡易サーバ化し、
+そこでSQLやらPythonやらを動かしています。
+これらをngrokを使って外部に公開することで、
+チャットボットを動かしています。
+無料でアカウント作成をすることで時間制限なく利用できるため、
+非常に便利なサービスです。</p>
+<h2 id="今後の予定">今後の予定</h2>
+<p>開発自体は結構進んでいるのですが、まとめる気力が起きないので、
+頑張ってまとめて更新していこうと思います。<br>
+一応現状はTwitterでポチポチ更新しています。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ヴィッセル神戸チャント検索ボット制作<br><br>歌詞からのチャント検索<br><br>「誰」▶︎「ダレ」▶︎サンペールのチャント<br>みたいな処理。<br><br>今は「イニエスタ」を「イエニスタ」みたいに打ち間違えても検索できるような処理を書いてます。<a href="https://twitter.com/hashtag/%E3%83%B4%E3%82%A3%E3%83%83%E3%82%BB%E3%83%AB?src=hash&amp;ref_src=twsrc%5Etfw">#ヴィッセル</a><a href="https://twitter.com/hashtag/%E3%83%B4%E3%82%A3%E3%83%83%E3%82%BB%E3%83%AB%E7%A5%9E%E6%88%B8?src=hash&amp;ref_src=twsrc%5Etfw">#ヴィッセル神戸</a><a href="https://twitter.com/hashtag/%E3%83%81%E3%83%A3%E3%83%B3%E3%83%88%E6%A4%9C%E7%B4%A2%E3%83%9C%E3%83%83%E3%83%88?src=hash&amp;ref_src=twsrc%5Etfw">#チャント検索ボット</a><a href="https://twitter.com/hashtag/LineBot?src=hash&amp;ref_src=twsrc%5Etfw">#LineBot</a><a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> <a href="https://t.co/mnACH76P8N">pic.twitter.com/mnACH76P8N</a></p>&mdash; Rakuichi/らくいち (@MuRaku4817) <a href="https://twitter.com/MuRaku4817/status/1241624023684878336?ref_src=twsrc%5Etfw">March 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                    <br>
+
+
+
+
+
+<aside>
+    <h2>関連記事（最新5件）</h2>
+    <ul>
+    
+    
+    <li><a href="/posts/2021/0405/conda-env-jupyter-kernel/">condaの仮想環境を用いたJupyterの複数kernel切り替え時のエラー（ImportError: DLL load failed）について</a></li>
+    
+    <li><a href="/posts/2020/0525/chant-teach02/">Pythonによる簡単なあいまい歌詞検索（「チャントオシエール」製作 vol.2）</a></li>
+    
+    <li><a href="/posts/2020/0413/windows-cpu-keras/">Windows(CPU)にAnacondaでTensorFlow2.1.0とKeras2.3.1の導入</a></li>
+    
+    <li><a href="/apps/chant-teach/">チャントオシエール - ヴィッセル神戸のチャント検索ボット</a></li>
+    
+    <li><a href="/posts/2019/1027/term-count/">分かち書きされたテキストに対する単語出現回数（Term Count）</a></li>
+    
+    </ul>
+</aside>
+</div>
+                
+                
+                <div class="after-post-tags">
+                    <ul class="tag-cloud">
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/python"><i class="fa fa-tags"></i> Python</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/mysql"><i class="fa fa-tags"></i> mysql</a>
+                        </li>
+                        
+                        <li><a href="https://rakuichi4817.github.io/tags/%e3%83%81%e3%83%a3%e3%83%b3%e3%83%88%e3%82%aa%e3%82%b7%e3%82%a8%e3%83%bc%e3%83%ab"><i class="fa fa-tags"></i> チャントオシエール</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <hr>
+                <br>
+                <h4>スポンサードリンク</h4>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480565306518637"
+                     data-ad-slot="4093474285"
+                     data-ad-format="auto"
+                     data-full-width-responsive="false"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+
+                
+                <ul class="prev-next pager main-pager" style="padding-left:0px">
+                    
+                    <li class="prev-next previous posileft">
+                        <a href="/posts/2020/0228/study-java03/">
+                            ←前ページ</a>
+                    </li>
+                    
+                    
+                    <li class="next" style="float: right">
+                        <a href="/apps/chant-teach/">
+                            次ページ→</a>
+                    </li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>
+
+            </div>
+<div class="jumbotron fortags posi">
+		<div class="align-self-center text-center under-title">
+			<div class="mid">
+				
+
+				<img src="/images/logo.png" alt="logo">
+				
+				
+				<br>ヴィッセル好き神戸人による気ままなブログ
+				
+			</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright 2019 - 2021 Rakuichi - All rights reserved
+            <br> <a href="https://rakuichi4817.github.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">
+                <a target="_blank" href="https://www.wowthemes.net">Mediumish Theme</a> by WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+        </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+    
+<script src="/js/mediumish.js"></script>
+<script src="https://rakuichi4817.github.io/js/load-photoswipe.js"></script>
+<script src="https://rakuichi4817.github.io/js/up-button.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-149694385-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    </body>
+</html>
